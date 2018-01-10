@@ -1,0 +1,100 @@
+<div class="container" ng-controller="homeController">
+
+
+
+    <div class="jumbotron">
+
+        <!--<form>-->
+        <!--<input type="text" id="search" placeholder="Szukaj.." >-->
+        <!--<button type="button" class="btn btn-primary" id="searchButton" ng-click="titleSearching()"  >  Szukaj  </button>-->
+        <!--</form>-->
+
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" placeholder="Search" type="text" ng-model="search">
+            <!--<button class="btn btn-primary" type="submit" id="searchButton" ng-click="titleSearching()">Szukaj</button>-->
+            <!--<button class="btn btn-primary" type="submit" id="showButton" ng-click="searchingResoults()">Szukaj</button>-->
+            <!--<button class="btn btn-primary" type="submit" id="showButton2" ng-click="filterSearchingResults()">Szukaj z filtrami</button>-->
+            <button class="btn btn-primary" type="submit" id="showButton" ng-click="searching()">Szukaj</button>
+            <!--<button class="btn btn-primary" type="submit" id="showButton2" ng-click="searching()">Szukaj z filtrami</button>-->
+
+        </form>
+        <br>
+
+
+        <label class="btn btn-primary">
+            <input checked="" type="checkbox" ng-model="filters" ng-click="loadCategories()"> Pokaż filtry
+        </label>
+
+
+        <div ng-show="filters">
+
+            <div class="form-group">
+                <label for="categorySelect">Kategoria</label>
+
+               <!--<select id="categorySelect" class="form-control" ng-model="searchingDetails.category" ng-click="setCategoryId()">-->
+                <select id="categorySelect" class="form-control" ng-model="categoryName"  ng-change="setCategoryId()" required>
+                    <option ng-repeat="x in categories" >{{x.name}}</option>
+                </select>
+            </div>
+
+            <div>
+                <span>  Cena od <input type="number"  ng-model="searchingDetails.priceDown"></span>
+                <span>  Cena do <input type="number"  ng-model="searchingDetails.priceUp"></span>
+            </div>
+            <br>
+            <label class="btn btn-primary">
+                <!--<input checked="" type="checkbox"  ng-model="searchingDetails.newItem" ng-click="setNewItem()"> Nowy-->
+                <input checked="" type="checkbox"  ng-model="searchingDetails.newItem">   Nowy
+            </label>
+
+            <br>
+            <label class="btn btn-primary">
+                <input checked="" type="checkbox"  ng-model="searchingDetails.secondHand"> Używane
+            </label>
+
+        </div>
+
+        <!--{{categories}}-->
+{{searchingDetails}}
+    </div>
+
+
+    Wyszukujesz: {{search}}
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <table class="table">
+                <tr>
+                    <td>Image</td>
+                    <td>Id</td>
+                    <td>Tytul</td>
+                    <td>Data wystawienia</td>
+                    <td>Cena</td>
+
+                </tr>
+                <tr ng-repeat="ogloszenie in dane">
+
+<!--<script>-->
+  <!--document.getElementById("ItemPreview").src = "data:image/png;base64," +  $scope.dane.image;-->
+<!--</script>-->
+
+
+
+                    <td><a href="#current/{{ogloszenie.id}}" target="_blank"> <img id="profileImage" src="data:image/jpg;base64, {{ogloszenie.image}}" height="100" width="100">   </a></td>
+                    <td><a href="#current/{{ogloszenie.id}}" target="_blank">{{ogloszenie.id}}</a></td>
+
+
+                    <td><a href="#current/{{ogloszenie.id}}" target="_blank">{{ogloszenie.title}}</a></td>
+                    <td><a href="#current/{{ogloszenie.id}}" target="_blank">{{ogloszenie.enclosingDate}}</a></td>
+                    <td><a href="#current/{{ogloszenie.id}}" target="_blank">{{ogloszenie.price}}</a></td>
+                </tr>
+
+            </table>
+
+
+        </div>
+    </div>
+
+
+</div>

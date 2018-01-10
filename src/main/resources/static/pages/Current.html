@@ -1,0 +1,47 @@
+<div class="container">
+    To strona bierzącej oferty.
+    <div ng-controller="currentController">
+
+
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <table class="table">
+
+            <tr>
+                <td>Id</td>
+                <td>Tytul</td>
+                <td>Opis</td>
+                <!--<td>Kategoria</td>-->
+                <td>Cena</td>
+                <td>Nowy</td>
+                <td>Data Wystawienia</td>
+                <td>Ilosc odslon</td>
+
+            </tr>
+            <tr>
+                <td>{{singleAdvertisement[0].id}}</td>
+                <td>{{singleAdvertisement[0].title}}</td>
+                <td>{{singleAdvertisement[0].description}}</td>
+                <!--<td>{{singleAdvertisement[0].category}}</td>-->
+                <td>{{singleAdvertisement[0].price}}</td>
+                <td>{{singleAdvertisement[0].ifNew}}</td>
+                <td>{{singleAdvertisement[0].enclosingDate}}</td>
+                <td>{{singleAdvertisement[0].views}}</td>
+
+
+            </tr>
+                </table>
+
+
+            </div>
+        </div>
+
+        Pokaż: <input type="button" value="Pokaz" ng-click="show()">
+      Ilosc:{{singleAdvertisement.length}}
+    </div>
+
+
+</div>
+

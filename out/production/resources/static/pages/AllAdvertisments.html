@@ -1,0 +1,47 @@
+<div class="container">
+    <h3> Oto ogłoszenia:</h3>
+
+    <div ng-controller="allAdvertismentsController">
+        <p><input type="button" value="Pokaż ogłoszenia" ng-click="getAdvertisments()"></p>
+
+
+        <h3>Ilosc rekordow:{{dane.length}}</h3>
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <table class="table">
+                    <tr>
+                        <td>Id</td>
+                        <td>Tytul</td>
+                        <td>Opis</td>
+                        <td>Kategoria</td>
+                        <td>Cena</td>
+                        <td>Nowy</td>
+                        <td>Data Wystawienia</td>
+                        <td>Ilosc odslon</td>
+
+                    </tr>
+                    <tr ng-repeat="ogloszenie in dane">
+                        <td>{{ogloszenie.id}}</td>
+                        <td>{{ogloszenie.title}}</td>
+                        <td>{{ogloszenie.description}}</td>
+                        <td>{{ogloszenie.category}}</td>
+                        <td>{{ogloszenie.price}}</td>
+                        <td>{{ogloszenie.ifNew}}</td>
+                        <td>{{ogloszenie.enclosingDate}}</td>
+                        <td>{{ogloszenie.views}}</td>
+
+
+                    </tr>
+
+                </table>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

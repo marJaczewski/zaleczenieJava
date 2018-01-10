@@ -1,0 +1,196 @@
+<div class="container">
+    strona robocza
+
+
+    <div ng-controller="editController">
+        {{8+5}}
+
+        <!--***************************MODAL*********************************-->
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edycja ogłosznia</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+
+
+                        <div class="form-group">
+                            <label for="categorySelect">Wybierz kategorię</label>
+
+                            <select ng-model="categoryName" id="categorySelect" class="form-control" ng-click="loadCategories()"  >
+
+                                <option ng-repeat="x in allCategories">{{x.name}}</option>
+
+                            </select>
+                        </div>
+
+
+
+
+                        <label for="title">Podaj tytul ogloszenia</label>
+                        <br>
+                        <input id="title" ng-model="edittedAdvertisment.title" placeholder={{singleAdvertisment[0].title}} />
+
+
+                        <div class="form-group">
+                            <label for="description">Podaj opis Twojego ogłoszenia:</label>
+                            <br>
+                            <textarea class="form-contorl" id="description" rows="2" ng-model="edittedAdvertisment.description"  placeholder={{singleAdvertisment[0].description}}></textarea>
+                        </div>
+
+
+
+                        <!--******************CENA********************-->
+
+                        <label for="price">Podaj cenę przedmiotu</label>
+                        <br>
+                        <input id="price" ng-model="edittedAdvertisment.price"  placeholder={{singleAdvertisment[0].price}} />
+                        <br>
+                        <!--******************CENA********************-->
+
+                        <!--******************CZY NOWY********************-->
+                        <label for="ifNew">Nowy</label>
+
+                        <input type="checkbox" id="ifNew" ng-model="edittedAdvertisment.ifNew"  placeholder={{singleAdvertisment[0].ifNew}} />
+                        <!--******************CZY NOWY********************-->
+
+
+
+                        <h2>Dodaj obraz</h2>
+
+                        <img id="profileImage2" src="data:image/jpg;base64, {{singleAdvertisment[0].image}}" height="100" width="100" ng-hide="hidePhoto">
+
+                        <!--<input type="button" ng-click="changePhoto()" value="Zmień zdjęcie" >-->
+
+                        <div class="col-md-6">
+                            <img ng-src="{{filepreview}}" class="img-responsive" ng-show="filepreview" height="150" width="150"/>
+                            <button ng-click="removePhoto()" ng-show="selectedUploadFile">Usuń</button>
+                        </div>
+
+                        <br>
+
+                        <input file-model="selectedUploadFile" type="file" name="file" fileinput="file" filepreview="filepreview" ng-click="toHidePhoto()">
+                        <input type="button" ng-click="uploadFile()" value="Upload">
+
+
+                        <p>To jest napis: </p>
+
+
+                        {{singleAdvertisment[0].enclosingDate}}
+                        <!--{{singleAdvertisment.description}}-->
+                        {{singleAdvertisment[0].category}}
+                        <!--{{singleAdvertisment.price}}-->
+                        <!--{{singleAdvertisment.ifNew}}-->
+                        {{9+4}}
+
+                        Stare.title: {{singleAdvertisment[0].title}}
+                        Etit.title:{{edittedAdvertisment.title}}
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default"   ng-click="editAdvertisment(singleAdvertisment[0].id)">Edytuj</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!--***************************/MODAL*********************************-->
+        <!--***************************/MODAL od usuwania*********************************-->
+        <div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Ostrzeżenie!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Czy napewno chcesz usunąć?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="deleteAdvertisment(advertToDelete)">Usuń</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--***************************/MODAL od usuwania*********************************-->
+
+        <input type="number" ng-model="idUzytkownika">
+
+        <input type="button" ng-click="pokazMojeOgloszenia()" value="Pokaż Moje ogloszenia" class="btn btn-info btn-lg">
+
+        <h3>Ogłoszenia dodane przez Ciebie</h3>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <table class="table">
+                    <tr>
+                        <td>Image</td>
+                        <td>Id</td>
+                        <td>Tytul</td>
+                        <td>Data wystawienia</td>
+                        <td>Cena</td>
+
+                        <td>Usuwanie</td>
+                        <td>Edycja</td>
+
+                    </tr>
+                    <tr ng-repeat="ogloszenie in dane">
+
+                        <!--<script>-->
+                        <!--document.getElementById("ItemPreview").src = "data:image/png;base64," +  $scope.dane.image;-->
+                        <!--</script>-->
+
+
+
+                        <td><a href="#current/{{ogloszenie.id}}" target="_blank"> <img id="profileImage" src="data:image/jpg;base64, {{ogloszenie.image}}" height="100" width="100">   </a></td>
+                        <td><a href="#current/{{ogloszenie.id}}" target="_blank">{{ogloszenie.id}}</a></td>
+
+
+                        <td><a href="#current/{{ogloszenie.id}}" target="_blank">{{ogloszenie.title}}</a></td>
+                        <td><a href="#current/{{ogloszenie.id}}" target="_blank">{{ogloszenie.enclosingDate}}</a></td>
+                        <td><a href="#current/{{ogloszenie.id}}" target="_blank">{{ogloszenie.price}}</a></td>
+
+                        <!--<td><input type="button" class="btn btn-info btn-lg" value="Usuń" ng-click="deleteAdvertisment(ogloszenie.id)"></td>-->
+                        <td> <button  type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2" ng-click="setAdvertToDelete(ogloszenie.id)">Usuń</button></td>
+
+
+
+                        <td>  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" ng-click="getAdvert(ogloszenie.id)">Edytuj</button></td>
+
+                    </tr>
+
+                </table>
+
+
+            </div>
+        </div>
+
+Pointer: {{pointer}}
+
+
+
+
+
+
+    </div>
+ </div>
+
+
