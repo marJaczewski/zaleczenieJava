@@ -32,6 +32,9 @@ public class User {
     @Column(name = "haslo")
     private String haslo;
 
+    @Column(name = "role")
+    private String role;
+
     @OneToMany
     @Column(name = "advertisments")
     private List<Advertisment> adverisments;
@@ -39,7 +42,8 @@ public class User {
 
     public User() {    }
 
-    public User( Long user_id, String imie, String nazwisko, String address, String email, String telefon, String haslo, List<Advertisment> adverisments) {
+
+    public User(Long user_id, String imie, String nazwisko, String address, String email, String telefon, String haslo, List<Advertisment> adverisments, String role) {
        this.user_id=user_id;
         this.imie = imie;
         this.nazwisko = nazwisko;
@@ -48,7 +52,15 @@ public class User {
         this.telefon = telefon;
         this.haslo = haslo;
         this.adverisments = adverisments;
+        this.role = role;
 
+    }
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Long getUser_id() {

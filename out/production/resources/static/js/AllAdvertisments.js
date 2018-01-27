@@ -14,7 +14,7 @@ app.controller('allAdvertismentsController', function ($http, $scope, $log) {
 
 
             }, function (result) {
-                $scope.dane = "Blad"
+                $scope.dane = "Blad";
                 console.log(result);
             })
     }

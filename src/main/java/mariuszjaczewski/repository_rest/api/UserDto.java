@@ -13,13 +13,14 @@ public class UserDto {
     private String email;
     private String telefon;
     private String haslo;
+    private String role;
     private List<Advertisment> adverisments;
 
 
     public UserDto() {
     }
 
-    public UserDto(String imie, String nazwisko, String address, String email, String telefon, String haslo, List<Advertisment> adverisments) {
+    public UserDto(String imie, String nazwisko, String address, String email, String telefon, String haslo, List<Advertisment> adverisments, String role) {
 //        this.user_id = user_id;
         this.imie = imie;
         this.nazwisko = nazwisko;
@@ -28,6 +29,7 @@ public class UserDto {
         this.telefon = telefon;
         this.haslo = haslo;
         this.adverisments = adverisments;
+        this.role = role;
     }
 
 //    public Long getUser_id() {
@@ -37,6 +39,15 @@ public class UserDto {
 //    public void setUser_id(Long user_id) {
 //        this.user_id = user_id;
 //    }
+
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public String getImie() {
         return imie;

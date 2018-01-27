@@ -13,20 +13,33 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
 import javax.sql.DataSource;
 
- @Configuration
- @EnableGlobalMethodSecurity(securedEnabled = true)
+
+
+
+
+@Configuration
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+
+
+//    DataSource dataSource;
+//
+//    @Autowired
+//    public void setDataSource(DataSource dataSource) {
+//        this.dataSource = dataSource;
+//    }
 
     @Autowired
     public void configureAuth(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("user1").password("user1").roles("USER")
-                .and()
-                .withUser("user2").password("user2").roles("USER", "ADMIN");
+                .withUser("admin").password("admin").roles("ADMIN");
     }
 
 
@@ -34,54 +47,50 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-               // .httpBasic()
-                //.and()
-                //.csrf()
-                //.disable()
+//                .httpBasic()
+//                .and()
+                 .csrf()
+                 .disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/api/**").hasRole("ADMIN")
-                .antMatchers("/pages/NewAdvertisment.html").hasRole("ADMIN")
+               // .antMatchers(HttpMethod.GET,"/api/**").hasRole("ADMIN")
+                //.antMatchers("/pages/NewAdvertisment.html").hasRole("ADMIN")
                 .anyRequest()
                 .permitAll()
                 .and()
-                .formLogin().loginPage("/pages/login.html");
+                .formLogin().loginPage("/pages/login.html")
+                .and()
+                .httpBasic().and()
 
-    }
 
 
 
-//    @Autowired
-//    private DataSource dataSource;
+        ;
+
+
+
+
+
+
+}
+
+
+
+//                .loginProcessingUrl("/logging")
+//                .usernameParameter("login")
+//               .passwordParameter("password")
+
+        ;
+//System.err.println(login+" "+password);
+
+
+
 //
 //    @Autowired
-//    public void configAutentication(AutenticationManagerBuilder auth) throws Exception{
-//        auth.jdbcAuthentication().dataSorce(dataSource).passwordEncoder(passwordEncoder())
+//    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
 //                .usersByUsernameQuery(
 //                        "select username, password, enabled from users where username=?")
 //                .authoritiesByUsernameQuery(
 //                        "select u.username, r.name from user_roles ur, users u, roles r where u.username=? and u.user_id = ur.user_id and ur.role_id = r.role_id");
-//
-//    }
-//
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.autorizeReguest()
-//                .antMathers("/resources/**").permitAll()
-//                   .anyRequest().autenticated()
-//                   .and()
-//                .formLogin()
-//                    .loginPage("/login")
-//                    .permitAll()
-//                    .and()
-//                .logout()
-//                    .permitAll().and().rememberMe().
-//                        tokenValiditySeconds(1209600).and().csrf().disable();
-//
-//    }
-//
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        PasswordEncoder encoder = new BCryptPasswordEncoder();
-//        return encoder;
 //    }
 }

@@ -1,6 +1,6 @@
-  app.controller('editController',   function ($scope, $http) {
+  app.controller('editController',   function ($scope, $http, myFactory,$location ) {
 
-    $scope.idUzytkownika=0;
+    $scope.idUzytkownika=myFactory.getUser();
 var identity;
 
 var allCategories2;
@@ -26,7 +26,10 @@ var allCategories2;
       $scope.uploadFile=function(){
           $scope.formData = new FormData();
           $scope.formData.append('file', $scope.selectedUploadFile);
-          $http.post('http://localhost:8095/api/addImage', $scope.formData, {
+
+
+
+          $http.post($location.protocol()+'://'+$location.host()+':'+$location.port()+'/api/addImage', $scope.formData, {
               transformRequest: angular.identity,
               headers: {'Content-Type': undefined},
 
@@ -62,12 +65,12 @@ $scope.hidePhoto=false;
       };
 
 
-//*****************************OBSŁUGA ZMIANY OBRAZU**********************************
+//*****************************/OBSŁUGA ZMIANY OBRAZU**********************************
 
 
     $scope.pokazMojeOgloszenia=function(){
 
-        $http.get('http://localhost:8095/userAdverts/' + $scope.idUzytkownika)
+        $http.get($location.protocol()+'://'+$location.host()+':'+$location.port()+'/userAdverts/' + $scope.idUzytkownika)
 
             .then(function (result) {
                     $scope.dane = result.data;
@@ -82,22 +85,23 @@ $scope.hidePhoto=false;
 
 
       $scope.loadCategories = function () {
-          $http.get('http://localhost:8095/getAllCategories')
+          $http.get($location.protocol()+'://'+$location.host()+':'+$location.port()+'/getAllCategories')
               .then(function (result) {
 
                       $scope.allCategories = result.data;
 
                   }, function (result) {
 
-                      $scope.categories = ["blad zaladowania kategorii"];
+                      $scope.categories = ["blad zaladowania kategoriiii"];
                   }
               );
 
           allCategories2 = $scope.allCategories;
       };
 
+
       $scope.getAdvert=function(advertId){
-          $http.get('http://localhost:8095/current/' + advertId)
+          $http.get($location.protocol()+'://'+$location.host()+':'+$location.port()+'/current/' + advertId)
 
               .then(function (result) {
                       $scope.singleAdvertisment = result.data;
@@ -112,7 +116,7 @@ $scope.hidePhoto=false;
         $scope.pointer=identity;
 
 //*******************usuwanie rekordu**********************
-$http.post('http://localhost:8095/deleteAdvert',$scope.pointer);
+$http.post($location.protocol()+'://'+$location.host()+':'+$location.port()+'/deleteAdvert',$scope.pointer);
 //*******************usuwanie rekordu**********************
 
 
@@ -121,6 +125,10 @@ $http.post('http://localhost:8095/deleteAdvert',$scope.pointer);
     };
 
     $scope.editAdvertisment=function(identity){
+
+        $scope.uploadFile();
+
+
         $scope.pointer=identity;
 
         this.setCategoryId();
@@ -135,7 +143,7 @@ $http.post('http://localhost:8095/deleteAdvert',$scope.pointer);
          $scope.edittedAdvertisment.enclosingDate= $scope.singleAdvertisment[0].enclosingDate;
 
 if($scope.hidePhoto==false){
-   $http.post('http://localhost:8095/api/addImage2',$scope.singleAdvertisment[0].image);
+   $http.post($location.protocol()+'://'+$location.host()+':'+$location.port()+'/api/addImage2',$scope.singleAdvertisment[0].image);
 
 
     // $scope.formData = new FormData();
@@ -155,9 +163,9 @@ if($scope.hidePhoto==false){
 
 
 
-        $http.post('http://localhost:8095/deleteAdvert',$scope.pointer);
+        $http.post($location.protocol()+'://'+$location.host()+':'+$location.port()+'/deleteAdvert',$scope.pointer);
 
-        $http.post('http://localhost:8095/newAdvert',$scope.edittedAdvertisment);
+        $http.post($location.protocol()+'://'+$location.host()+':'+$location.port()+'/newAdvert',$scope.edittedAdvertisment);
 
        // this.pokazMojeOgloszenia();
 

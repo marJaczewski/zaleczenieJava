@@ -1,5 +1,5 @@
 app.controller('newCategoryController', newCategorySimpleController)
-function newCategorySimpleController($scope, $http){
+function newCategorySimpleController($scope, $http, $location){
 
 $scope.newCategory={
 
@@ -8,7 +8,7 @@ $scope.newCategory={
 
 $scope.addCategory=function(){
 
-    $http.post('http://localhost:8095/newCategory', $scope.newCategory);
+    $http.post($location.protocol()+'://'+$location.host()+':'+$location.port()+'/newCategory', $scope.newCategory);
 
 
 };

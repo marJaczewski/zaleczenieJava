@@ -7,14 +7,14 @@ app.controller('allAdvertismentsController', function ($http, $scope, $log) {
         // $http.get('http://localhost:8095/getAllAdverts')
 
 
-        $http.get('http://localhost:8095/getAllAdverts')
+        $http.get($location.protocol()+'://'+$location.host()+':'+$location.port()+'/getAllAdverts')
             .then(function (result) {
                 // console.log(result.data[0]);
                 $scope.dane = result.data;
 
 
             }, function (result) {
-                $scope.dane = "Blad"
+                $scope.dane = "Blad";
                 console.log(result);
             })
     }

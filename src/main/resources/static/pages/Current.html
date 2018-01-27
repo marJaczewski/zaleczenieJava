@@ -1,5 +1,6 @@
 <div class="container">
     To strona bierzącej oferty.
+
     <div ng-controller="currentController">
 
 
@@ -13,22 +14,20 @@
                 <td>Id</td>
                 <td>Tytul</td>
                 <td>Opis</td>
-                <!--<td>Kategoria</td>-->
                 <td>Cena</td>
                 <td>Nowy</td>
                 <td>Data Wystawienia</td>
-                <td>Ilosc odslon</td>
+                <!--<td>Ilosc odslon</td>-->
 
             </tr>
             <tr>
                 <td>{{singleAdvertisement[0].id}}</td>
                 <td>{{singleAdvertisement[0].title}}</td>
                 <td>{{singleAdvertisement[0].description}}</td>
-                <!--<td>{{singleAdvertisement[0].category}}</td>-->
                 <td>{{singleAdvertisement[0].price}}</td>
                 <td>{{singleAdvertisement[0].ifNew}}</td>
                 <td>{{singleAdvertisement[0].enclosingDate}}</td>
-                <td>{{singleAdvertisement[0].views}}</td>
+                <!--<td>{{singleAdvertisement[0].views}}</td>-->
 
 
             </tr>
@@ -37,9 +36,8 @@
 
             </div>
         </div>
+          <img id="profileImage" src="data:image/jpg;base64, {{singleAdvertisement[0].image}}"  >
 
-        Pokaż: <input type="button" value="Pokaz" ng-click="show()">
-      Ilosc:{{singleAdvertisement.length}}
     </div>
 
 

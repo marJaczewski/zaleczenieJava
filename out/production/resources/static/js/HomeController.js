@@ -1,7 +1,13 @@
 app.controller('homeController', simpleHomeController)
 
 
-function simpleHomeController($scope, $http, $rootScope) {
+function simpleHomeController($scope, $http, $rootScope, $location) {
+
+    document.getElementById("table").style.visibility="hidden";
+    document.getElementById("lack").style.visibility="hidden";
+
+
+
 
     $scope.login="";
     $scope.haslo="";
@@ -48,13 +54,36 @@ $scope.filters=false;
     $scope.searchingResoults = function () {
 
 
-        $http.get('http://localhost:8095/getSearched/' + $scope.search)
+        $http.get($location.protocol()+'://'+$location.host()+':'+$location.port()+'/getSearched/' + $scope.search)
             .then(function (result) {
-                    $scope.dane = result.data;
+
+                $scope.dane = result.data;
+
+                var count = Object.keys($scope.dane).length
+
+                if( count===0){
+                document.getElementById("table").style.visibility="hidden";
+                document.getElementById("lack").style.visibility="visible";}
+                else{
+                    document.getElementById("table").style.visibility="visible";
+                    document.getElementById("lack").style.visibility="hidden";
+
+
+                }
+
+
+
+
+
 
 
                 }, function (result) {
+                document.getElementById("table").style.visibility="hidden";
+                document.getElementById("lack").style.visibility="visible";
                     $scope.dane = "blad pobrania odfiltrowanych wyników"
+
+
+
                 }
             );
     };
@@ -113,15 +142,8 @@ $scope.filters=false;
         //*********INTERPRETACJA NULL'I W FILTRACH*********************
 
 
-       // $scope.searchingDetails.search = "ford";
-         //$scope.searchingDetails.category = 1;
-       // $scope.searchingDetails.priceDown = 200;
-       // $scope.searchingDetails.priceUp = 20000;
-      //    $scope.searchingDetails.newItem = true;
-       //  $scope.searchingDetails.secondHand = 0;
 
-
-        $http.get('http://localhost:8095/getFilterSearched/'
+        $http.get($location.protocol()+'://'+$location.host()+':'+$location.port()+'/getFilterSearched/'
             + $scope.searchingDetails.search + "/"
             + $scope.searchingDetails.category + "/"
             + $scope.searchingDetails.priceDown + "/"
@@ -131,10 +153,26 @@ $scope.filters=false;
         )
 
             .then(function (result) {
-                    $scope.dane = result.data;
+                $scope.dane = result.data;
+
+                var count = Object.keys($scope.dane).length
+
+                if( count===0){
+                    document.getElementById("table").style.visibility="hidden";
+                    document.getElementById("lack").style.visibility="visible";}
+                else{
+                    document.getElementById("table").style.visibility="visible";
+                    document.getElementById("lack").style.visibility="hidden";
+
+
+                }
+
 
 
                 }, function (result) {
+                document.getElementById("table").style.visibility="hidden";
+                document.getElementById("lack").style.visibility="visible";
+
                     $scope.dane = "blad pobrania odfiltrowanych wyników"
                 }
             );
@@ -144,7 +182,7 @@ $scope.filters=false;
     //********************WYSZUKIWANIE Z FILTRAMI*******************
     //*********************************** robocze************************
     $scope.loadCategories = function () {
-        $http.get('http://localhost:8095/getAllCategories')
+        $http.get($location.protocol()+'://'+$location.host()+':'+$location.port()+'/getAllCategories')
             .then(function (result) {
 
                     $scope.categories = result.data;

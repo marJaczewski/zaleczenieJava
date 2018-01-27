@@ -1,35 +1,39 @@
 package mariuszjaczewski.repository_rest.login;
 
-import mariuszjaczewski.repository_rest.Controllers.AdvertismentRepository;
-import mariuszjaczewski.repository_rest.Controllers.CategoryRepository;
-import mariuszjaczewski.repository_rest.Entities.Advertisment;
-import mariuszjaczewski.repository_rest.Entities.Category;
-import org.springframework.beans.factory.annotation.Autowired;
+import mariuszjaczewski.repository_rest.Controllers.UserRepository;
+import mariuszjaczewski.repository_rest.Entities.User;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
-import java.util.List;
-
 @RestController
+
 public class LoginController {
 
-    //test
-    private CategoryRepository categoryRepository;
-    private AdvertismentRepository advertismentRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    public LoginController(CategoryRepository categoryRepository, AdvertismentRepository advertismentRepository) {
-        this.categoryRepository = categoryRepository;
-        this.advertismentRepository = advertismentRepository;
+    public LoginController(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
-    @RequestMapping("/getData")
-    public String getDataF(){
 
-        List<Category> listCat = categoryRepository.findAll();
-        List<Advertisment> listAdv = advertismentRepository.findAll();
-        return  null;
+    @RequestMapping(value = "/logging/{email}/{password}", method = RequestMethod.GET)
+    public LoggedDetails logging(
+            @PathVariable("email") String email,
+            @PathVariable("password") String password
+    ){
+System.err.println(email+" "+password);
 
+  User user=userRepository.findUserByEmailAndPassword(email, password);
+
+
+LoggedDetails loggedDetails = new LoggedDetails(user.getUser_id(), user.getRole(), user.getEmail());
+
+
+
+return loggedDetails;
     }
+
+
 }

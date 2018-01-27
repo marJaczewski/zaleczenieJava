@@ -4,10 +4,6 @@
 
     <div class="jumbotron">
 
-        <!--<form>-->
-        <!--<input type="text" id="search" placeholder="Szukaj.." >-->
-        <!--<button type="button" class="btn btn-primary" id="searchButton" ng-click="titleSearching()"  >  Szukaj  </button>-->
-        <!--</form>-->
 
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" placeholder="Search" type="text" ng-model="search">
@@ -61,6 +57,13 @@
 
     Wyszukujesz: {{search}}
 
+    <div id="lack">
+
+        <h4>Brak wyników</h4>
+
+    </div>
+
+<div id="table">
 
     <div class="row">
         <div class="col-sm-6">
@@ -74,10 +77,6 @@
 
                 </tr>
                 <tr ng-repeat="ogloszenie in dane">
-
-<!--<script>-->
-  <!--document.getElementById("ItemPreview").src = "data:image/png;base64," +  $scope.dane.image;-->
-<!--</script>-->
 
 
 
@@ -96,5 +95,6 @@
         </div>
     </div>
 
+</div>
 
 </div>

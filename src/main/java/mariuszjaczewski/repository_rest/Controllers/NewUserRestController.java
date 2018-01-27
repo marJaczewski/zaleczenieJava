@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/free")
 public class NewUserRestController {
 
 
@@ -32,7 +32,7 @@ public class NewUserRestController {
         user.setEmail(userDto.getEmail());
         user.setHaslo(userDto.getHaslo());
         user.setTelefon(userDto.getTelefon());
-
+        user.setRole("user");
 System.err.println(userDto.getEmail());
 
 //for (int i =0 ; i<50 ; i++) {

@@ -10,7 +10,10 @@
 
                 <h2>Dodawanie ogloszenia</h2>
 
-        <input type="number" ng-model="newAdvertisment.user" value="user.id">
+        Dodajesz jako user: {{mail}}
+
+
+        <!--<input type="number" ng-model="newAdvertisment.user" value="user.id">-->
 
 
 
@@ -60,20 +63,20 @@
 
                     <h2>Dodaj obraz</h2>
         <div class="col-md-6">
-            <img ng-src="{{filepreview}}" class="img-responsive" ng-show="filepreview" height="150" width="150"/>
-            <button ng-click="removePhoto()" ng-show="selectedUploadFile">Usuń</button>
+            <img ng-src="{{filepreview}}" class="img-responsive"  ng-show="filepreview" height="150" width="150"/>
+            <button ng-click="removePhoto()" class="btn btn-info btn-lg" ng-show="selectedUploadFile">Usuń</button>
         </div>
 
 <br>
 
-        <input file-model="selectedUploadFile" type="file" name="file" fileinput="file" filepreview="filepreview">
-        <input type="button" ng-click="uploadFile()" value="Upload">
+        <input file-model="selectedUploadFile" class="btn btn-info btn-lg" type="file" name="file" fileinput="file" filepreview="filepreview">
+        <!--<input type="button" ng-click="uploadFile()" class="btn btn-info btn-lg" value="Upload">-->
 
 
 
-
-
-    <p><input type="button" value="Opublikuj ogłoszenie" ng-click="addAdvertisment()"></p>
+        <br>
+        <br>
+    <p><input type="button" class="btn btn-info btn-lg" value="Opublikuj ogłoszenie" ng-click="addAdvertisment()"></p>
 
 
                     <p>To jest napis: </p>
