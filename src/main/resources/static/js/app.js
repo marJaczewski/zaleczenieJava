@@ -105,3 +105,50 @@ app.config(function($routeProvider) {
     // $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 });
 
+app.controller('navigationController', function($scope, $http, myFactory) {
+//
+//     $scope.loggedDetails={
+//         userId:0,
+//         role:"",
+//         email:""
+//     };
+//
+//     $scope.page="#login";
+//
+//     // if (myFactory.getUser() == 0) {
+//     //     $scope.buttonTitle = "Zaloguj";
+//     // } else {
+//     //     $scope.buttonTitle = "Wyloguj";
+//     // }
+//
+//
+//
+//
+// $scope.buttonTitle= myFactory.getButtonCaption();
+//
+// $scope.loggingService = function(){
+//     myFactory.setButtonTitle("Wyloguj");
+//     //$scope.buttonTitle="Wyloguj";
+//
+// };
+
+
+
+});
+
+
+
+// app.factory('myFactory', function () {
+//     var userId = 0;
+//     var userEmail;
+//     var userRole;
+//     var buttonTitle="Zaloguj się";
+//     var service = {};
+//
+//     service.getUser = function () { return userId; };
+//     service.setUser = function (userIdService){ userId =  userIdService; };
+//
+//     service.getButtonCaption = function(){return buttonTitle;};
+//     service.setButtonTitle = function(buttonTitleService){buttonTitle=buttonTitleService};
+//     return service;
+// });

@@ -1,4 +1,4 @@
-app.controller('newUserController', function($scope, $http){
+app.controller('newUserController', function($scope, $http, $location){
 
   $scope.user={
       imie:"",
@@ -16,7 +16,7 @@ app.controller('newUserController', function($scope, $http){
         $scope.server = angular.copy($scope.user);
         $scope.submit_success = true;
 
-        $http.post('http://localhost:8095/api/addUser', $scope.user);
+        $http.post($location.protocol()+'://'+$location.host()+':'+$location.port()+'/free/addUser', $scope.user);
 
 
     }

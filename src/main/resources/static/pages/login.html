@@ -3,30 +3,31 @@
 
          <h2>Zaloguj się</h2>
 
+         Id: {{loggedDetails.userId}}
+         <br>
+         Mail: {{loggedDetails.email}}
+         <br>
+         Role: {{loggedDetails.role}}
 
-
-
-
-
-
-
-
-         <input type="number">
-
-
-
-
-
+            UserId: {{loggedDetails.userId}}
+            UserIdService: {{serviceId}}
+mjaczewskim@gmail.com
 
          <div class="loging">
              <label>Podaj login </label>
-             <input   class="form-control mr-sm-2" type="text" ng-model="login"  >
+             <input   class="form-control mr-sm-2" type="text" ng-model="queryEmail"  >
              <label>Podaj hasło </label>
-             <input class="form-control mr-sm-2" type="password" ng-model="haslo" >
-             <input type="submit" value="Zaloguj">
+             <input class="form-control mr-sm-2" type="password" ng-model="password" >
+             <input type="submit" class="btn btn-info btn-lg" value="Zaloguj" ng-click="doLogin()">
              <br>
 
          </div>
+
+
+
+
+
+
 
      </div>
 

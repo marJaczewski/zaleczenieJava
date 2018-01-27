@@ -1,9 +1,9 @@
 <div class="container">
-    strona robocza
+
 
 
     <div ng-controller="editController">
-        {{8+5}}
+
 
         <!--***************************MODAL*********************************-->
 
@@ -18,7 +18,7 @@
                         <h4 class="modal-title">Edycja ogłosznia</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Some text in the modal.</p>
+
 
 
                         <div class="form-group">
@@ -71,27 +71,27 @@
 
                         <div class="col-md-6">
                             <img ng-src="{{filepreview}}" class="img-responsive" ng-show="filepreview" height="150" width="150"/>
-                            <button ng-click="removePhoto()" ng-show="selectedUploadFile">Usuń</button>
+                            <button ng-click="removePhoto()" class="btn btn-info btn-lg" ng-show="selectedUploadFile">Usuń</button>
                         </div>
 
                         <br>
 
-                        <input file-model="selectedUploadFile" type="file" name="file" fileinput="file" filepreview="filepreview" ng-click="toHidePhoto()">
-                        <input type="button" ng-click="uploadFile()" value="Upload">
+                        <input file-model="selectedUploadFile" class="btn btn-info btn-lg" type="file" name="file" fileinput="file" filepreview="filepreview" ng-click="toHidePhoto()">
+                        <!--<input type="button" ng-click="uploadFile()" class="btn btn-info btn-lg" value="Upload">-->
 
 
-                        <p>To jest napis: </p>
 
 
-                        {{singleAdvertisment[0].enclosingDate}}
-                        <!--{{singleAdvertisment.description}}-->
-                        {{singleAdvertisment[0].category}}
-                        <!--{{singleAdvertisment.price}}-->
-                        <!--{{singleAdvertisment.ifNew}}-->
-                        {{9+4}}
 
-                        Stare.title: {{singleAdvertisment[0].title}}
-                        Etit.title:{{edittedAdvertisment.title}}
+                        <!--{{singleAdvertisment[0].enclosingDate}}-->
+                        <!--&lt;!&ndash;{{singleAdvertisment.description}}&ndash;&gt;-->
+                        <!--{{singleAdvertisment[0].category}}-->
+                        <!--&lt;!&ndash;{{singleAdvertisment.price}}&ndash;&gt;-->
+                        <!--&lt;!&ndash;{{singleAdvertisment.ifNew}}&ndash;&gt;-->
+                        <!--{{9+4}}-->
+
+                        <!--Stare.title: {{singleAdvertisment[0].title}}-->
+                        <!--Etit.title:{{edittedAdvertisment.title}}-->
 
 
 
@@ -132,7 +132,7 @@
 
         <!--***************************/MODAL od usuwania*********************************-->
 
-        <input type="number" ng-model="idUzytkownika">
+        <!--<input type="number" ng-model="idUzytkownika">-->
 
         <input type="button" ng-click="pokazMojeOgloszenia()" value="Pokaż Moje ogloszenia" class="btn btn-info btn-lg">
 
