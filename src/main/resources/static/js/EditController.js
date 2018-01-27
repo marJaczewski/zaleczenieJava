@@ -92,12 +92,13 @@ $scope.hidePhoto=false;
 
                   }, function (result) {
 
-                      $scope.categories = ["blad zaladowania kategorii"];
+                      $scope.categories = ["blad zaladowania kategoriiii"];
                   }
               );
 
           allCategories2 = $scope.allCategories;
       };
+
 
       $scope.getAdvert=function(advertId){
           $http.get($location.protocol()+'://'+$location.host()+':'+$location.port()+'/current/' + advertId)
